@@ -45,6 +45,11 @@ on:
         required: true
         type: boolean
         default: true
+      BBG:
+        description: 'baseband-guard'
+        required: true
+        type: boolean
+        default: true
 jobs:
 
   build-kernel-a14-6-1:
@@ -57,6 +62,7 @@ jobs:
       version: ${{ inputs.version }}
       use_zram: ${{ inputs.use_zram }}
       use_kpm: ${{ inputs.use_kpm }}
+      BBG: ${{ inputs.BBG }}
   get-ksu-manager:
     if: ${{ inputs.get_manager }}
     uses: ./.github/workflows/get-manager.yml
