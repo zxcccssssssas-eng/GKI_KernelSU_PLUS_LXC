@@ -359,8 +359,30 @@ jobs:
           git clone https://github.com/zxcccssssssas-eng/GKI-Custom0 gki-patch
           cp ./gki-patch/config/gki_defconfig-android14-5.15 ./android-kernel/common/arch/arm64/configs/gki_defconfig
           cd ./android-kernel/common
-          sed -i '/bad_version:/,/}/ s/return 0;/return 1;/' kernel/module/version.c
           git apply $GITHUB_WORKSPACE/gki-patch/patchs/*.patch
+          sed -i '/bad_version:/{:a;n;/return 0;/{s/return 0;/return 1;/;b};ba}' kernel/module/version.c
+          cat >> "$CONFIG/common/arch/arm64/configs/gki_defconfig" << 'EOF'
+          # Required for Namespace support
+          CONFIG_NAMESPACES=y
+          CONFIG_UTS_NS=y
+          CONFIG_IPC_NS=y
+          CONFIG_USER_NS=y
+          CONFIG_PID_NS=y
+          CONFIG_NET_NS=y
+
+          # Required for Control Groups
+          CONFIG_CGROUPS=y
+          CONFIG_CGROUP_DEVICE=y
+          CONFIG_CGROUP_FREEZER=y
+
+          # Required for Networking/Containers
+          CONFIG_SYSVIPC=y
+          CONFIG_VETH=y
+          CONFIG_BRIDGE=y
+          CONFIG_NETFILTER_XT_TARGET_LOG=y
+          
+          EOF
+          
           if [ "$FORMATTED_BRANCH" = "android12-5.10" ] || [ "$FORMATTED_BRANCH" = "android13-5.10" ] || [ "$FORMATTED_BRANCH" = "android13-5.15" ]; then
             if ! grep -qxF $'\tif (!vma_pages(vma))' ./fs/proc/task_mmu.c; then
               echo "未找到 vma_pages,正在进行补丁修复"
