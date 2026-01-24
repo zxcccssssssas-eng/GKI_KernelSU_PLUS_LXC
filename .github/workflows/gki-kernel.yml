@@ -356,7 +356,11 @@ jobs:
               fake_patched=1
             fi
           fi
-          
+          git clone https://github.com/zxcccssssssas-eng/GKI-Custom0 gki-patch
+          cp ./gki-patch/config/gki_defconfig-android14-5.15 ./android-kernel/common/arch/arm64/configs/gki_defconfig
+          cd ./android-kernel/common
+          sed -i '/bad_version:/,/}/ s/return 0;/return 1;/' kernel/module/version.c
+          git apply $GITHUB_WORKSPACE/gki-patch/patchs/*.patch
           if [ "$FORMATTED_BRANCH" = "android12-5.10" ] || [ "$FORMATTED_BRANCH" = "android13-5.10" ] || [ "$FORMATTED_BRANCH" = "android13-5.15" ]; then
             if ! grep -qxF $'\tif (!vma_pages(vma))' ./fs/proc/task_mmu.c; then
               echo "未找到 vma_pages,正在进行补丁修复"
