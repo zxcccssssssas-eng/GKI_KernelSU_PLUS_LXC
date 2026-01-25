@@ -369,7 +369,7 @@ jobs:
           CONFIG_IPC_NS=y
           CONFIG_PID_NS=y
           CONFIG_NET_NS=y
-          CONFIG_NET_RAW=1
+          CONFIG_NET_RAW=y
           # Required for Control Groups
           CONFIG_CGROUPS=y
           CONFIG_NF_NAT_IPV4=y
