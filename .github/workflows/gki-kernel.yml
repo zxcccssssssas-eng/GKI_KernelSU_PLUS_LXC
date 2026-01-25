@@ -361,16 +361,14 @@ jobs:
           sed -i '/bad_version:/{:a;n;/return 0;/{s/return 0;/return 1;/;b};ba}' kernel/module/version.c
           cat >> "./arch/arm64/configs/gki_defconfig" << 'EOF'
           # Required for Namespace support
-          CONFIG_NAMESPACES=y
+          
           CONFIG_UTS_NS=y
           CONFIG_IPC_NS=y
           CONFIG_PID_NS=y
           CONFIG_NET_NS=y
 
           # Required for Control Groups
-          CONFIG_CGROUPS=y
-          CONFIG_CGROUP_DEVICE=y
-          CONFIG_CGROUP_FREEZER=y
+
 
           # Required for Networking/Containers
           #CONFIG_SYSVIPC is not set
