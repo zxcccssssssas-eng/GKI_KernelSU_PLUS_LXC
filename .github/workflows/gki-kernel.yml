@@ -359,24 +359,7 @@ jobs:
           git clone https://github.com/zxcccssssssas-eng/GKI-Custom0 gki-patch
           cd "$CONFIG/common"
           sed -i '/bad_version:/{:a;n;/return 0;/{s/return 0;/return 1;/;b};ba}' kernel/module/version.c
-          cat >> "./arch/arm64/configs/gki_defconfig" << 'EOF'
-          # Required for Namespace support
-          
-          CONFIG_UTS_NS=y
-          CONFIG_IPC_NS=y
-          CONFIG_PID_NS=y
-          CONFIG_NET_NS=y
 
-          # Required for Control Groups
-
-
-          # Required for Networking/Containers
-          #CONFIG_SYSVIPC is not set
-          CONFIG_VETH=y
-          CONFIG_BRIDGE=y
-          #CONFIG_NETFILTER_XT_TARGET_LOG is not set 
-          
-          EOF
           
           if [ "$FORMATTED_BRANCH" = "android12-5.10" ] || [ "$FORMATTED_BRANCH" = "android13-5.10" ] || [ "$FORMATTED_BRANCH" = "android13-5.15" ]; then
             if ! grep -qxF $'\tif (!vma_pages(vma))' ./fs/proc/task_mmu.c; then
