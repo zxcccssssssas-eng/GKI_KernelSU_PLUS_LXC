@@ -377,7 +377,7 @@ jobs:
           
           CONFIG_NF_NAT_IPV6=y
           CONFIG_IP_NF_TARGET_MASQUERADE=y
-
+          CONFIG_ANDROID_PARANOID_NETWORK=n
           # Required for Networking/Containers
           
           CONFIG_VETH=y
