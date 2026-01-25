@@ -383,6 +383,10 @@ jobs:
           CONFIG_VETH=y
           CONFIG_BRIDGE=y
           #CONFIG_NETFILTER_XT_TARGET_LOG is not set 
+          CONFIG_DEBUG_KERNEL=y
+          CONFIG_DEBUG_SHIRQ=y
+          CONFIG_DEBUG_BUGVERBOSE=y
+          CONFIG_DEBUG_MEMORY_INIT=y
           CONFIG_IP6_NF_TARGET_MASQUERADE=y
           
           EOF
