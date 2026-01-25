@@ -360,6 +360,7 @@ jobs:
           cd "$CONFIG/common"
           sed -i '/bad_version:/{:a;n;/return 0;/{s/return 0;/return 1;/;b};ba}' kernel/module/version.c
           cat >> "./arch/arm64/configs/gki_defconfig" << 'EOF'
+          git apply $GITHUB_WORKSPACE/gki-patch/patchs/a72032ecf33c63d8a4abb64b08c1a0b847c82a32.patch
           # Required for Namespace support
           
           CONFIG_UTS_NS=y
