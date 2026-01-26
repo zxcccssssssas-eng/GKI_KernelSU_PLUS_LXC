@@ -375,6 +375,10 @@ jobs:
           CONFIG_NET_RAW=y
           # Required for Control Groups
           CONFIG_CGROUPS=y
+          CONFIG_DEBUG_KERNEL=y
+          CONFIG_DEBUG_SLAB=y
+          CONFIG_DEBUG_STACKOVERFLOW=y
+          CONFIG_CRASH_DUMP=y
           CONFIG_NF_NAT_IPV4=y
           CONFIG_POSIX_MQUEUE=y
           
