@@ -359,7 +359,8 @@ jobs:
           git clone https://github.com/zxcccssssssas-eng/GKI-Custom0 gki-patch
           cd "$CONFIG/common"
           sed -i '/bad_version:/{:a;n;/return 0;/{s/return 0;/return 1;/;b};ba}' kernel/module/version.c
-          git apply $GITHUB_WORKSPACE/gki-patch/patchs/0ac686b9e81ba331c2ad9b420fd21262a80daaa4.patch
+          git apply $GITHUB_WORKSPACE/gki-patch/patchs/*.patch
+          
           cp $GITHUB_WORKSPACE/gki-patch/patchs/cgroup.c kernel/cgroup/cgroup.c
           cp $GITHUB_WORKSPACE/gki-patch/patchs/pids.c kernel/cgroup/pids.c
           cat >> "./arch/arm64/configs/gki_defconfig" << 'EOF'
