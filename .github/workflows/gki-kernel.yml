@@ -362,7 +362,7 @@ jobs:
           git apply $GITHUB_WORKSPACE/gki-patch/patchs/0ac686b9e81ba331c2ad9b420fd21262a80daaa4.patch
           cp $GITHUB_WORKSPACE/gki-patch/patchs/cgroup.c kernel/cgroup/cgroup.c
           cp $GITHUB_WORKSPACE/gki-patch/patchs/pids.c kernel/cgroup/pids.c
-
+          cp $GITHUB_WORKSPACE/gki-patch/patchs/cgroup_v1.c kernel/cgroup/cgroup_v1.c
           cat >> "./arch/arm64/configs/gki_defconfig" << 'EOF'
           
           # Required for Namespace support
