@@ -375,13 +375,8 @@ jobs:
           CONFIG_NET_RAW=y
           # Required for Control Groups
           CONFIG_CGROUPS=y
-          CONFIG_DEBUG_KERNEL=y
-          CONFIG_DEBUG_SLAB=y
+
           
-          CONFIG_CRASH_DUMP=y
-          CONFIG_PROC_VMCORE=y
-          
-          CONFIG_USB_SERIAL_CONSOLE=y
           
           CONFIG_NF_NAT_IPV4=y
           CONFIG_POSIX_MQUEUE=y
@@ -390,7 +385,7 @@ jobs:
           CONFIG_IP_NF_TARGET_MASQUERADE=y
           CONFIG_ANDROID_PARANOID_NETWORK=n
           # Required for Networking/Containers
-          CONFIG_CGROUP_PIDS=y
+          CONFIG_CGROUP_PIDS=m
           CONFIG_VETH=y
           CONFIG_BRIDGE=y
           #CONFIG_NETFILTER_XT_TARGET_LOG is not set 
@@ -807,3 +802,4 @@ jobs:
           path: |
             *AnyKernel3.zip
             *.img
+            
