@@ -313,6 +313,9 @@ jobs:
           CONFIG_PID_NS=y
           CONFIG_NET_NS=y
           CONFIG_NET_RAW=y
+          CONFIG_MODULES_SIG=n
+          CONFIG_MODULES_SIG_FORCE=n
+          
           # Required for Control Groups
           CONFIG_CGROUPS=y
 
