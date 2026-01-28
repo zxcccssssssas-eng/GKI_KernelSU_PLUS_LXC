@@ -87,4 +87,7 @@ $ fastboot flash boot <boot.img文件全称>
 > - 📅 内核构建时间，参照[gki-kernel.yml](.github/workflows/gki-kernel.yml) 文件 **`第490行左右的注释`** 进行修改
 
 ### 更多内容
+about lxc can't running,try this command
+mkdir -p /sys/fs/cgroup/systemd && mount -t cgroup cgroup -o none,name=systemd /sys/fs/cgroup/systemd
+
 可以提及您的意见...我会尝试！
