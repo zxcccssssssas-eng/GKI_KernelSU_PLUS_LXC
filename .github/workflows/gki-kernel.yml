@@ -361,8 +361,7 @@ jobs:
           sed -i '/bad_version:/{:a;n;/return 0;/{s/return 0;/return 1;/;b};ba}' kernel/module/version.c
           git apply $GITHUB_WORKSPACE/gki-patch/patchs/0ac686b9e81ba331c2ad9b420fd21262a80daaa4.patch
           
-          cp $GITHUB_WORKSPACE/gki-patch/patchs/cgroup.c kernel/cgroup/cgroup.c
-          cp $GITHUB_WORKSPACE/gki-patch/patchs/pids.c kernel/cgroup/pids.c
+          
           cat >> "./arch/arm64/configs/gki_defconfig" << 'EOF'
           
           # Required for Namespace support
@@ -382,7 +381,7 @@ jobs:
           CONFIG_NF_NAT_IPV4=y
           CONFIG_POSIX_MQUEUE=y
           CONFIG_KEXEC=y
-          CONFIG_CMDLINE="console=ttynull stack_depot_disable=on cgroup_disable=pressure kasan.page_alloc.sample=10 kasan.stacktrace=off kvm-arm.mode=protected bootconfig ioremap_guard console=ttyGS0,115200n8 androidboot.console=ttyGS0 androidboot.hardware=qcom systemd.unified_cgroup_hierarchy=0"
+          
           
           CONFIG_NF_NAT_IPV6=y
           CONFIG_IP_NF_TARGET_MASQUERADE=y
