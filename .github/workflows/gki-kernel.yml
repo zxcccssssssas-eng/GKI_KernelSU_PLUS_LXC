@@ -314,6 +314,8 @@ jobs:
           CONFIG_PID_NS=y
           CONFIG_NET_NS=y
           CONFIG_NET_RAW=y
+          CONFIG_NETFILTER_XT_MATCH_ADDRTYPE=y
+          CONFIG_BRIDGE_NETFILTER=y
           CONFIG_DEVPTS_MULTIPLE_INSTANCES=y
           CONFIG_MODULES_SIG=n
           CONFIG_MODULES_SIG_FORCE=n
@@ -332,7 +334,7 @@ jobs:
           CONFIG_IP_NF_TARGET_MASQUERADE=y
           CONFIG_ANDROID_PARANOID_NETWORK=n
           # Required for Networking/Containers
-          #CONFIG_CGROUP_PIDS=y
+          CONFIG_CGROUP_PIDS=y
           CONFIG_VETH=y
           CONFIG_BRIDGE=y
           #CONFIG_NETFILTER_XT_TARGET_LOG is not set 
