@@ -319,7 +319,7 @@ jobs:
           CONFIG_DEVPTS_MULTIPLE_INSTANCES=y
           CONFIG_MODULES_SIG=n
           CONFIG_MODULES_SIG_FORCE=n
-          
+          CONFIG_ARM64_16K_PAGES=y
           # Required for Control Groups
           CONFIG_CGROUPS=y
 
