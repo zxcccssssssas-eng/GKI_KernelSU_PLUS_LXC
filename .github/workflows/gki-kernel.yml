@@ -588,7 +588,18 @@ jobs:
               sed -i '/^CONFIG_LOCALVERSION=/ s/="\([^"]*\)"/="${{ inputs.version }}"/' ./common/arch/arm64/configs/gki_defconfig
             fi
           fi
-
+      - name: Fix kernel config for Bazel
+        run: |
+          cd "$CONFIG/common"
+    
+          # Ensure KernelSU configs are properly set via kconfig
+          scripts/kconfig/conf --olddefconfig arch/arm64/configs/gki_defconfig
+    
+          # Regenerate defconfig to normalize
+          make ARCH=arm64 O=out savedefconfig 2>/dev/null || true
+          if [ -f out/defconfig ]; then
+           cp out/defconfig arch/arm64/configs/gki_defconfig
+          fi
       - name: Build with retry
         uses: nick-fields/retry@v3
         with:
