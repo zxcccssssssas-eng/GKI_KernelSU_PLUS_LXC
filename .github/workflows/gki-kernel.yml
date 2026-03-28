@@ -216,6 +216,19 @@ jobs:
           echo '补丁加入构建'
           echo "obj-y += hmbird_patch.o" >> Makefile
           tail -n 3 Makefile
+      - name: Skip Defconfig Check
+        run: |
+          cd "$CONFIG/common"
+          # Disable the check in the main GKI config
+          if [ -f "build.config.gki" ]; then
+            sed -i 's/check_defconfig//g' build.config.gki
+          fi
+          # Disable the check in the architecture specific config
+          if [ -f "build.config.gki.aarch64" ]; then
+            sed -i 's/check_defconfig//g' build.config.gki.aarch64
+          fi
+          echo "GKI defconfig check disabled to allow custom configurations."
+          
       
       - name: 确定 KernelSU 的分支
         run: |
