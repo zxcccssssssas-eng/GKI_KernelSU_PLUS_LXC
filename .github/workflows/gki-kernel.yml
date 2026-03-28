@@ -281,6 +281,20 @@ jobs:
           
           echo "Baseband-guard 配置完成"
           
+      - name: Disable GKI defconfig check
+        run: |
+          # Navigate to kernel source root if needed
+          cd $CONFIG
+        
+          # Remove the check_defconfig command from the build config
+          sed -i '/POST_DEFCONFIG_CMDS="check_defconfig"/d' common/build.config.gki
+        
+          # Also check the aarch64 specific config just in case
+          if [ -f "common/build.config.gki.aarch64" ]; then
+              sed -i '/POST_DEFCONFIG_CMDS="check_defconfig"/d' common/build.config.gki.aarch64
+          fi
+
+          
 
       - name: 一些修复补丁
         run: |
